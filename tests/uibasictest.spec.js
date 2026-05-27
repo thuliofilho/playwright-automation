@@ -69,7 +69,7 @@ test("UI controls", async ({ page }) => {
 });
 
 // Test case 6: child windows
-test.only("Child windows", async ({ browser }) => {
+test("Child windows", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
   const userName = page.locator("#username");
@@ -77,10 +77,10 @@ test.only("Child windows", async ({ browser }) => {
   const documentLink = page.locator("[href*='documents-request']");
 
   const [newPage] = await Promise.all([
-  context.waitForEvent("page"),
-  documentLink.click(),
-])
+    context.waitForEvent("page"),
+    documentLink.click(),
+  ]);
 
-const text = await newPage.locator(".red").textContent();
-console.log(text);  
+  const text = await newPage.locator(".red").textContent();
+  console.log(text);
 });
